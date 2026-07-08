@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#075985">
+<link rel="manifest" href="manifest.json">
+<title>منصة جزاء | كتاب لغتي التفاعلي الصوتي</title>
+<style>
+:root{
+  --bg:#fdfbf7; --card:#ffffff; --ink:#1f2937; --muted:#475569;
+  --line:#d6e4ec; --sky:#075985; --skyDark:#064e73;
+  --honey:#f59e0b; --honeyDark:#92400e; --green:#15803d;
+  --softBlue:#e0f2fe; --softHoney:#ffedd5; --danger:#b45309;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body,button,a,input{-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation}
+body{
+  margin:0;font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top right,#e0f2fe 0,rgba(224,242,254,.65) 25%,transparent 46%),
+    radial-gradient(circle at top left,#ffedd5 0,rgba(255,237,213,.70) 24%,transparent 44%),
+    var(--bg);
+  color:var(--ink);line-height:1.75;
+}
+.hero{
+  padding:28px 14px 20px;text-align:center;
+  background:linear-gradient(135deg,#ffffff 0%,#eef8ff 46%,#fff7ed 100%);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  width:72px;height:72px;border-radius:24px;margin:0 auto 10px;
+  background:linear-gradient(145deg,var(--sky),var(--honey));
+  color:white;display:grid;place-items:center;font-weight:900;font-size:38px;
+  box-shadow:0 18px 36px -22px #075985;
+}
+h1{margin:8px 0 0;font-size:clamp(23px,5vw,35px);color:var(--skyDark);font-weight:900}
+.sub{margin:6px auto 0;color:var(--muted);max-width:760px;font-size:15px}
+.ministry{font-size:13px;color:#7c8a99;margin-top:4px}
+.wrap{max-width:1020px;margin:auto;padding:16px 12px 76px}
+.parent-alert{
+  background:linear-gradient(135deg,#ffffff 0%,#f0f9ff 58%,#fff7ed 100%);
+  border:2px solid #bae6fd;border-radius:22px;padding:15px;margin:2px 0 14px;
+  box-shadow:0 18px 42px -34px rgba(7,89,133,.75);
+}
+.parent-alert h2{margin:0 0 6px;color:var(--skyDark);font-size:20px}
+.parent-alert p{margin:0;color:var(--muted)}
+.parent-alert b{color:var(--honeyDark)}
+.download-options{
+  display:grid;gap:8px;margin-top:12px;
+}
+.option{
+  background:rgba(255,255,255,.84);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px 12px;
+}
+.option-title{font-weight:900;color:#15324a}
+.option-note{font-size:13px;color:var(--muted);margin-top:2px}
+.warning{color:var(--danger);font-weight:900}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px;align-items:center}
+.search{
+  flex:1;min-width:220px;border:1px solid var(--line);border-radius:15px;
+  padding:12px 14px;font-family:inherit;background:white;font-size:15px;
+  box-shadow:0 12px 28px -28px #075985;
+}
+.btn{
+  border:1px solid var(--line);border-radius:15px;background:white;padding:12px 14px;
+  min-height:46px;font-family:inherit;font-weight:900;cursor:pointer;text-decoration:none;color:var(--ink);
+}
+.btn.primary{background:var(--sky);border-color:var(--sky);color:white}
+.btn.green{background:var(--green);border-color:var(--green);color:white}
+.btn.honey{background:var(--honey);border-color:var(--honey);color:#3b1d00}
+.progress{height:11px;background:#dbeafe;border-radius:999px;overflow:hidden;min-width:180px;flex:1;display:none}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--sky));transition:.15s}
+.status{font-size:13px;color:var(--muted);width:100%;font-weight:700}
+.accordion{display:grid;gap:11px}
+.unit{
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:0 18px 46px -36px rgba(36,52,71,.8);
+}
+.unit-head{
+  width:100%;border:0;background:transparent;padding:16px 14px;display:flex;align-items:center;gap:10px;
+  cursor:pointer;font-family:inherit;text-align:right;color:var(--ink);
+}
+.badge{
+  width:40px;height:40px;border-radius:15px;background:linear-gradient(145deg,var(--sky),var(--honey));
+  color:white;display:grid;place-items:center;font-weight:900;flex:0 0 auto;
+}
+.head-text{flex:1}
+.head-title{font-weight:900;font-size:18px;color:#15324a}
+.head-desc{font-size:13px;color:var(--muted)}
+.arrow{font-size:21px;color:var(--skyDark);transition:.2s}
+.unit.open .arrow{transform:rotate(180deg)}
+.unit-actions{display:none;padding:0 12px 12px;background:#fff}
+.unit.open .unit-actions{display:flex;gap:8px;flex-wrap:wrap}
+.lessons{display:none;border-top:1px solid var(--line);padding:10px;background:linear-gradient(135deg,#f8fbff,#fffaf3)}
+.unit.open .lessons{display:grid;gap:8px}
+.lesson{
+  background:white;border:1px solid var(--line);border-radius:16px;padding:12px;color:var(--ink);
+  display:grid;gap:9px;min-height:76px;
+}
+.lesson-title{display:flex;align-items:center;gap:10px}
+.lesson-name{font-weight:900;flex:1}
+.tag{font-size:12px;color:var(--skyDark);background:var(--softBlue);border-radius:999px;padding:3px 8px;white-space:nowrap;font-weight:900}
+.lesson-actions{display:flex;gap:8px;flex-wrap:wrap}
+.enter,.save{
+  border:0;border-radius:13px;padding:10px 12px;min-height:44px;font-family:inherit;font-size:13px;font-weight:900;
+  text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.enter{color:white;background:var(--sky)}
+.save{color:white;background:var(--green)}
+@media(min-width:700px){.unit.open .lessons{grid-template-columns:repeat(2,1fr)} .download-options{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){
+  .tools{display:grid;grid-template-columns:1fr 1fr}
+  .search,.status,.progress{grid-column:1/-1}
+  .btn{width:100%}
+  .lesson-actions{display:grid;grid-template-columns:1fr 1fr}
+  .enter,.save{width:100%}
+}
+footer{text-align:center;color:#334155;font-size:13px;margin-top:24px}
+footer .rights{margin-top:4px;color:#475569;font-weight:800}
+
+.after-download-note{margin-top:12px;background:#fff7ed;border:1px solid #fed7aa;color:#5f3b12;border-radius:16px;padding:11px 12px;font-size:14px}
+.after-download-note b{color:var(--honeyDark)}
+.download-control{display:flex;flex-direction:column;gap:7px;align-items:stretch}
+.inline-progress{display:none;min-width:190px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:8px 9px}
+.inline-progress.show{display:block}
+.progress-line{height:10px;background:#dbeafe;border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--sky));transition:.15s}
+.progress-text{font-size:12px;color:var(--muted);font-weight:900;margin-top:4px}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.34);display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}
+.modal-overlay.show{display:flex}
+.modal-box{width:min(420px,100%);background:white;border-radius:22px;border:1px solid var(--line);box-shadow:0 24px 70px -30px rgba(15,23,42,.7);padding:18px;text-align:center}
+.modal-icon{width:54px;height:54px;border-radius:18px;margin:0 auto 10px;background:var(--green);color:white;display:grid;place-items:center;font-size:28px;font-weight:900}
+.modal-title{font-size:20px;font-weight:900;color:#15324a;margin:0 0 8px}
+.modal-msg{color:var(--muted);font-size:15px;margin:0 0 14px}
+.modal-btn{background:var(--sky);color:white;border:0;border-radius:14px;padding:10px 18px;font-family:inherit;font-weight:900;cursor:pointer}
+@media(max-width:520px){.download-control{grid-column:1/-1}.download-control .btn{width:100%}.lesson-actions .inline-progress{grid-column:1/-1}}
+
+
+.hero{position:relative}
+.identity-bar{
+  width:min(1040px,100%);margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  direction:rtl;padding:8px 10px;border:1px solid rgba(7,89,133,.16);
+  border-radius:22px;background:rgba(255,255,255,.88);
+  box-shadow:0 18px 42px -34px rgba(7,89,133,.8);
+}
+.identity-logo{width:clamp(132px,28vw,190px);height:auto;display:block;object-fit:contain;flex:0 1 auto}
+.identity-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.identity-btn{
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 13px;border-radius:999px;text-decoration:none;font-weight:900;font-size:13px;
+  border:1px solid transparent;white-space:nowrap;box-shadow:0 12px 28px -24px rgba(15,23,42,.75);
+}
+.identity-btn.bag{background:var(--sky);border-color:var(--sky);color:#fff}
+.identity-btn.install{background:var(--green);border-color:var(--green);color:#fff;cursor:pointer;font-family:inherit}
+.identity-btn.install[disabled]{opacity:.72;cursor:default}
+.identity-btn.rate,.identity-btn.rate:visited,.identity-btn.rate:hover,.identity-btn.rate:active,.identity-btn.rate:focus{
+  background:var(--honey);border-color:var(--honey);color:#3b1d00;transform:none;filter:none;outline:none;
+}
+.saved-mark{
+  display:none;
+  font-size:12px;
+  font-weight:900;
+  color:#166534;
+  background:#dcfce7;
+  border:1px solid #bbf7d0;
+  border-radius:999px;
+  padding:3px 8px;
+  white-space:nowrap;
+}
+.saved-mark.show{display:inline-flex}
+@media(max-width:520px){
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  .hero{padding:12px 10px 18px}
+  .identity-bar{align-items:flex-start;margin-bottom:14px;padding:8px;border-radius:18px}
+  .identity-logo{width:126px}
+  .identity-actions{gap:6px;justify-content:flex-start}
+  .identity-btn{min-width:44px;min-height:44px;padding:10px 11px;font-size:12px}
+  .identity-btn span{display:none}
+}
+@media(max-width:380px){
+  .identity-logo{width:112px}
+  .logo{width:64px;height:64px;border-radius:20px;font-size:34px}
+}
+
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="identity-bar" aria-label="شريط هوية أكاديمية بابا أحمد">
+    <img class="identity-logo" src="assets/images/brand/baba-logo-full.png" alt="أكاديمية بابا أحمد للتأسيس">
+    <div class="identity-actions">
+      <a class="identity-btn bag" href="https://ajh.sa/" title="العودة إلى حقيبة بابا أحمد">↩ <span>العودة للحقيبة</span></a>
+      <button class="identity-btn install" id="installApp" type="button" title="تثبيت منصة جزاء على الجهاز" aria-label="تثبيت منصة جزاء على الجهاز">📲 <span>تثبيت المنصة</span></button>
+      <a class="identity-btn rate" href="https://ajh.sa/submit/?item=jazaa_reading" title="تقييم صفحة منصة جزاء">⭐ <span>تقييم الصفحة</span></a>
+    </div>
+  </div>
+  <div class="logo">ج</div>
+  <h1>منصة جزاء — كتاب لغتي للصف الأول الابتدائي التفاعلي الصوتي</h1>
+  <p class="sub ministry">حسب منهج وزارة التعليم في المملكة العربية السعودية</p>
+  <p class="sub">اختر الوحدة، ثم افتح الدرس المطلوب.</p>
+</section>
+
+<main class="wrap">
+  <section class="parent-alert">
+    <h2>للاستخدام بدون إنترنت</h2>
+    <p>يمكنك حفظ ما يحتاجه طفلك فقط. اختر الطريقة الأنسب لجهازك.</p>
+    <div class="download-options">
+      <div class="option">
+        <div class="option-title">تحميل الكتاب كاملًا</div>
+        <div class="option-note"><span class="warning">يحتاج مساحة ووقتًا أطول.</span> مناسب إذا كان الجهاز جيدًا.</div>
+      </div>
+      <div class="option">
+        <div class="option-title">تحميل وحدة واحدة</div>
+        <div class="option-note">مناسب إذا كان الطفل يعمل على وحدة محددة.</div>
+      </div>
+      <div class="option">
+        <div class="option-title">تحميل درس واحد</div>
+        <div class="option-note">الأخف على الأجهزة الضعيفة.</div>
+      </div>
+    </div>
+    <div class="after-download-note">
+      <b>الطريقة المضمونة:</b>
+      اضغط حفظ الدرس أو تحميل الوحدة أولًا. بعد ظهور رسالة اكتمال الحفظ يمكنك الرجوع للدرس لاحقًا من نفس الجهاز دون حفظه من جديد.
+    </div>
+  </section>
+
+  <div class="tools">
+    <input class="search" id="search" placeholder="ابحث باسم الدرس أو الحرف…">
+    <button class="btn primary" id="openAll">فتح كل الوحدات</button>
+    <button class="btn" id="closeAll">إغلاق الكل</button>
+    <div class="download-control">
+      <button class="btn honey" id="downloadAll">تحميل الكتاب كاملًا</button>
+      <div class="inline-progress" id="progress-all">
+        <div class="progress-line"><div class="progress-fill"></div></div>
+        <div class="progress-text">جاري الحفظ…</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="accordion" id="accordion"></section>
+  <footer>
+  <div>منصة جزاء — كتاب لغتي للصف الأول الابتدائي التفاعلي الصوتي</div>
+  <div class="rights">© 2026 أكاديمية بابا أحمد للتأسيس. جميع الحقوق محفوظة.</div>
+</footer>
+</main>
+
+<div class="modal-overlay" id="doneModal">
+  <div class="modal-box">
+    <div class="modal-icon">✓</div>
+    <div class="modal-title">اكتمل الحفظ</div>
+    <p class="modal-msg" id="modalMsg">بعد اكتمال الحفظ: افتح الدرس وأنت متصل بالإنترنت، وانتظر حتى تكتمل الصفحة، ثم فعّل وضع الطيران واستمتع بالدرس.</p>
+    <button class="modal-btn" onclick="closeModal()">حسنًا</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="installModal" role="dialog" aria-modal="true" aria-labelledby="installModalTitle">
+  <div class="modal-box">
+    <div class="modal-icon">📲</div>
+    <div class="modal-title" id="installModalTitle">تثبيت منصة جزاء</div>
+    <p class="modal-msg" id="installModalMsg"></p>
+    <button class="modal-btn" id="installModalClose" type="button">حسنًا</button>
+  </div>
+</div>
+
+<script>
+const UNITS=[{"title": "الوحدة الأولى", "desc": "أسرتي", "lessons": [{"title": "نشيد أسرتي", "type": "نشيد", "path": "lessons/u1-nasheed-usraty/index.html", "topic": "نشيد أسرتي"}, {"title": "حرف م", "type": "حرف", "path": "lessons/u1-meem/index.html", "topic": "حرف م"}, {"title": "حرف ب", "type": "حرف", "path": "lessons/u1-baa/index.html", "topic": "حرف ب"}, {"title": "حرف ل", "type": "حرف", "path": "lessons/u1-laam/index.html", "topic": "حرف ل"}, {"title": "حرف د", "type": "حرف", "path": "lessons/u1-daal/index.html", "topic": "حرف د"}, {"title": "حرف ن", "type": "حرف", "path": "lessons/u1-noon/index.html", "topic": "حرف ن"}, {"title": "حرف ر", "type": "حرف", "path": "lessons/u1-raa/index.html", "topic": "حرف ر"}]}, {"title": "الوحدة الثانية", "desc": "مدرستي", "lessons": [{"title": "نشيد مدرستي حديقتي", "type": "نشيد", "path": "lessons/u2-nasheed-madrasati/index.html", "topic": "نشيد مدرستي حديقتي"}, {"title": "حرف ص", "type": "حرف", "path": "lessons/u2-saad/index.html", "topic": "حرف ص"}, {"title": "حرف ف", "type": "حرف", "path": "lessons/u2-faa/index.html", "topic": "حرف ف"}, {"title": "حرف س", "type": "حرف", "path": "lessons/u2-seen/index.html", "topic": "حرف س"}, {"title": "حرف ق", "type": "حرف", "path": "lessons/u2-qaaf/index.html", "topic": "حرف ق"}, {"title": "حرف ح", "type": "حرف", "path": "lessons/u2-haa-hard/index.html", "topic": "حرف ح"}, {"title": "حرف ت", "type": "حرف", "path": "lessons/u2-taa/index.html", "topic": "حرف ت"}]}, {"title": "الوحدة الثالثة", "desc": "وطني", "lessons": [{"title": "نشيد أرض بلادي", "type": "نشيد", "path": "lessons/u3-nasheed-ard-biladi/index.html", "topic": "نشيد أرض بلادي"}, {"title": "حرف أ", "type": "حرف", "path": "lessons/u3-alif/index.html", "topic": "حرف أ"}, {"title": "حرف ط", "type": "حرف", "path": "lessons/u3-taa-emph/index.html", "topic": "حرف ط"}, {"title": "حرف ز", "type": "حرف", "path": "lessons/u3-zay/index.html", "topic": "حرف ز"}, {"title": "حرف و", "type": "حرف", "path": "lessons/u3-waw/index.html", "topic": "حرف و"}, {"title": "حرف ج", "type": "حرف", "path": "lessons/u3-jeem/index.html", "topic": "حرف ج"}, {"title": "حرف ش", "type": "حرف", "path": "lessons/u3-sheen/index.html", "topic": "حرف ش"}]}, {"title": "الوحدة الرابعة", "desc": "صحتي وسلامتي", "lessons": [{"title": "نشيد المرور", "type": "نشيد", "path": "lessons/u4-nasheed-muroor/index.html", "topic": "نشيد المرور"}, {"title": "حرف ض", "type": "حرف", "path": "lessons/u4-daad/index.html", "topic": "حرف ض"}, {"title": "حرف ع", "type": "حرف", "path": "lessons/u4-ain/index.html", "topic": "حرف ع"}, {"title": "حرف ك", "type": "حرف", "path": "lessons/u4-kaaf/index.html", "topic": "حرف ك"}, {"title": "حرف خ", "type": "حرف", "path": "lessons/u4-khaa/index.html", "topic": "حرف خ"}, {"title": "حرف ي", "type": "حرف", "path": "lessons/u4-yaa/index.html", "topic": "حرف ي"}, {"title": "حرف ذ", "type": "حرف", "path": "lessons/u4-thaal/index.html", "topic": "حرف ذ"}]}, {"title": "الوحدة الخامسة", "desc": "ألعابي وهواياتي", "lessons": [{"title": "نشيد بعد الدرس", "type": "نشيد", "path": "lessons/u5-nasheed-baad-aldars/index.html", "topic": "نشيد بعد الدرس"}, {"title": "حرف هـ", "type": "حرف", "path": "lessons/u5-haa-soft/index.html", "topic": "حرف هـ"}, {"title": "حرف غ", "type": "حرف", "path": "lessons/u5-ghain/index.html", "topic": "حرف غ"}, {"title": "حرف ظ", "type": "حرف", "path": "lessons/u5-dhaa/index.html", "topic": "حرف ظ"}, {"title": "حرف ث", "type": "حرف", "path": "lessons/u5-thaa/index.html", "topic": "حرف ث"}]}, {"title": "الوحدة السادسة", "desc": "صحتي وغذائي", "lessons": [{"title": "نشيد الحليب", "type": "نشيد", "path": "lessons/u6-nasheed-haleeb/index.html", "topic": "نشيد الحليب"}, {"title": "فيه شفاء", "type": "درس", "path": "lessons/u6-feeh-shifaa/index.html", "topic": "فيه شفاء"}, {"title": "عيادة المريض", "type": "درس", "path": "lessons/u6-eyadat-almareed/index.html", "topic": "عيادة المريض"}, {"title": "طعام ملوث", "type": "درس", "path": "lessons/u6-taam-mulawath/index.html", "topic": "طعام ملوث"}, {"title": "أعضاء جسمي", "type": "درس", "path": "lessons/u6-aadaa-jasmi/index.html", "topic": "أعضاء جسمي"}]}, {"title": "الوحدة السابعة", "desc": "حيوانات", "lessons": [{"title": "نشيد النحلة", "type": "نشيد", "path": "lessons/u7-nasheed-nahla/index.html", "topic": "نشيد النحلة"}, {"title": "تعلمت درسًا", "type": "درس", "path": "lessons/u7-taallamt-darsan/index.html", "topic": "تعلمت درسًا"}, {"title": "الخروف والذئب", "type": "درس", "path": "lessons/u7-kharouf-wolf/index.html", "topic": "الخروف والذئب"}, {"title": "الثعلب والعصفور الصغير", "type": "درس", "path": "lessons/u7-fox-bird/index.html", "topic": "الثعلب والعصفور الصغير"}, {"title": "التعاون", "type": "درس", "path": "lessons/u7-taawun/index.html", "topic": "التعاون"}]}, {"title": "الوحدة الثامنة", "desc": "مناسبات", "lessons": [{"title": "نشيد أحب العيد", "type": "نشيد", "path": "lessons/u8-nasheed-eid/index.html", "topic": "نشيد أحب العيد"}, {"title": "نورة وشهر رمضان", "type": "درس", "path": "lessons/u8-noura-ramadan/index.html", "topic": "نورة وشهر رمضان"}, {"title": "ضيف جديد", "type": "درس", "path": "lessons/u8-new-guest/index.html", "topic": "ضيف جديد"}, {"title": "الشجرة الحزينة", "type": "درس", "path": "lessons/u8-sad-tree/index.html", "topic": "الشجرة الحزينة"}, {"title": "يوم الأرض", "type": "درس", "path": "lessons/u8-earth-day/index.html", "topic": "يوم الأرض"}]}];
+const JEZA_VERSION='jeza-offline-v5-13-install';
+const ASSET_CACHE=JEZA_VERSION+'-assets';
+const FULL_DOWNLOAD_MB=140;
+
+function appBase(){
+ const clean=location.href.split('#')[0].split('?')[0];
+ const path=location.pathname;
+ const last=path.split('/').pop();
+ if(path.endsWith('/') || last.includes('.')) return new URL('.', location.href).href;
+ return location.origin + path + '/';
+}
+const APP_BASE=appBase();
+function appUrl(path){ return new URL(path, APP_BASE).href; }
+
+const box=document.getElementById('accordion'), search=document.getElementById('search');
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));}
+
+let deferredInstallPrompt=null;
+const installButton=document.getElementById('installApp');
+const installModal=document.getElementById('installModal');
+const installModalTitle=document.getElementById('installModalTitle');
+const installModalMsg=document.getElementById('installModalMsg');
+const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+function showInstallMessage(title,message){
+ installModalTitle.textContent=title;
+ installModalMsg.textContent=message;
+ installModal.classList.add('show');
+}
+function closeInstallModal(){installModal.classList.remove('show');}
+document.getElementById('installModalClose').addEventListener('click',closeInstallModal);
+installModal.addEventListener('click',e=>{if(e.target===installModal)closeInstallModal();});
+function updateInstallButton(){
+ if(isStandalone()){
+   installButton.disabled=true;
+   installButton.title='منصة جزاء مثبتة على الجهاز';
+   installButton.setAttribute('aria-label','منصة جزاء مثبتة على الجهاز');
+   installButton.innerHTML='✓ <span>المنصة مثبتة</span>';
+ }
+}
+window.addEventListener('beforeinstallprompt',event=>{
+ event.preventDefault();
+ deferredInstallPrompt=event;
+ installButton.disabled=false;
+});
+window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updateInstallButton();});
+installButton.addEventListener('click',async()=>{
+ if(isStandalone()){
+   showInstallMessage('المنصة مثبتة','منصة جزاء مثبتة بالفعل على هذا الجهاز.');
+   return;
+ }
+ if(deferredInstallPrompt){
+   deferredInstallPrompt.prompt();
+   try{await deferredInstallPrompt.userChoice;}catch(e){}
+   deferredInstallPrompt=null;
+   return;
+ }
+ if(isIOS()){
+   showInstallMessage('التثبيت على iPhone وiPad','اضغط زر المشاركة في المتصفح، ثم اختر «إضافة إلى الشاشة الرئيسية».');
+   return;
+ }
+ showInstallMessage('تثبيت منصة جزاء','من قائمة المتصفح اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». وقد يحتاج المتصفح إلى بضع ثوانٍ قبل إتاحة التثبيت.');
+});
+updateInstallButton();
+
+function render(){
+ const q=search.value.trim();
+ box.innerHTML=UNITS.map((u,i)=>{
+  const lessons=u.lessons.filter(l=>!q||(l.title+l.topic+u.title+u.desc).includes(q));
+  if(!lessons.length)return '';
+  const openClass=q?' open':(i===0?' open':'');
+  return `<article class="unit${openClass}">
+    <button class="unit-head" type="button" onclick="this.closest('.unit').classList.toggle('open')">
+      <span class="badge">${i+1}</span>
+      <span class="head-text"><span class="head-title">${u.title}</span><br><span class="head-desc">${u.desc} — ${lessons.length} درس</span></span>
+      <span class="arrow">⌄</span>
+    </button>
+    <div class="unit-actions">
+      <div class="download-control">
+        <button class="btn green" onclick="downloadUnit(${i})">تحميل هذه الوحدة</button>
+        <div class="inline-progress" id="progress-unit-${i}">
+          <div class="progress-line"><div class="progress-fill"></div></div>
+          <div class="progress-text">جاري الحفظ…</div>
+        </div>
+      </div>
+    </div>
+    <div class="lessons">${lessons.map((l,j)=>`<div class="lesson">
+      <div class="lesson-title"><span class="tag">${l.type}</span><span class="lesson-name">${l.title}</span><span class="saved-mark" data-path="${l.path}">✓ محفوظ</span></div>
+      <div class="lesson-actions">
+        <a class="enter" href="${appUrl(l.path)}">فتح الدرس</a>
+        <button class="save" onclick="downloadLesson(${i},${j})">حفظ الدرس للجهاز</button>
+        <div class="inline-progress" id="progress-lesson-${i}-${j}">
+          <div class="progress-line"><div class="progress-fill"></div></div>
+          <div class="progress-text">جاري الحفظ…</div>
+        </div>
+      </div>
+    </div>`).join('')}</div>
+  </article>`;
+ }).join('');
+ refreshSavedMarks();
+}
+search.addEventListener('input',render);render();
+document.getElementById('openAll').onclick=()=>document.querySelectorAll('.unit').forEach(x=>x.classList.add('open'));
+document.getElementById('closeAll').onclick=()=>document.querySelectorAll('.unit').forEach(x=>x.classList.remove('open'));
+
+async function getAssetList(){ const res=await fetch(appUrl('asset-manifest.json'),{cache:'no-store'}); return await res.json(); }
+function coreFiles(){ return ['index.html','manifest.json','asset-manifest.json','service-worker.js','icons/icon-192.png','icons/icon-512.png','shared/browsersupport.js','shared/player.js']; }
+function lessonPrefix(path){return path.replace(/index\.html$/,'');}
+function resetProgress(id){ const el=document.getElementById(id); if(!el)return; el.classList.add('show'); const fill=el.querySelector('.progress-fill'); const text=el.querySelector('.progress-text'); if(fill)fill.style.width='0%'; if(text)text.textContent='جاري الحفظ…'; }
+function showProgress(id,label,pct){ const el=document.getElementById(id); if(!el)return; el.classList.add('show'); const fill=el.querySelector('.progress-fill'); const text=el.querySelector('.progress-text'); if(fill)fill.style.width=pct+'%'; if(text)text.textContent=label+' — '+pct+'٪'; }
+function showModal(label,fail){ const modal=document.getElementById('doneModal'); const msg=document.getElementById('modalMsg'); msg.textContent = fail ? 'اكتمل الحفظ مع تعذر بعض الملفات. قد تكون المساحة ممتلئة أو الاتصال ضعيفًا. جرّب حفظ درس واحد أو وحدة واحدة وأعد المحاولة.' : 'تم حفظ '+label+'. يمكنك الرجوع إليه لاحقًا من نفس الجهاز دون حفظه من جديد.'; modal.classList.add('show'); }
+function closeModal(){document.getElementById('doneModal').classList.remove('show');}
+document.getElementById('doneModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function savedSet(){try{return new Set(JSON.parse(localStorage.getItem('jezaSavedLessons')||'[]'));}catch(e){return new Set();}}
+function saveSet(s){localStorage.setItem('jezaSavedLessons',JSON.stringify(Array.from(s)));}
+function markSaved(paths){const s=savedSet();paths.forEach(p=>s.add(p));saveSet(s);refreshSavedMarks();}
+function refreshSavedMarks(){
+ const s=savedSet();
+ document.querySelectorAll('.saved-mark').forEach(m=>{
+   const p=m.dataset.path;
+   if(s.has(p)){m.classList.add('show');return;}
+   if('caches'in window){
+     caches.open(ASSET_CACHE).then(c=>c.match(appUrl(p),{ignoreSearch:true})).then(r=>{
+       if(r){m.classList.add('show');s.add(p);saveSet(s);}
+     }).catch(()=>{});
+   }
+ });
+}
+async function storageWarning(){
+ if(!('storage'in navigator)||!navigator.storage.estimate)return true;
+ try{
+   const e=await navigator.storage.estimate();
+   const free=(e.quota||0)-(e.usage||0);
+   if(free>0 && free < FULL_DOWNLOAD_MB*1024*1024){
+     alert('تنبيه: مساحة التخزين المتاحة قد لا تكفي لتحميل الكتاب كاملًا. الأفضل تحميل وحدة أو درس واحد.');
+   }
+ }catch(e){}
+ return true;
+}
+
+
+async function cacheFiles(files,label,progressId){
+ resetProgress(progressId);
+ const cache=await caches.open(ASSET_CACHE);
+ let done=0,ok=0,fail=0;
+ const limit=5;
+ let cursor=0;
+ function fetchWithTimeout(url,ms){
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),ms||15000);
+   return fetch(url,{cache:'reload',signal:controller.signal}).finally(()=>clearTimeout(timer));
+ }
+ async function worker(){
+   while(cursor<files.length){
+     const f=files[cursor++]; const url=appUrl(f);
+     try{
+       const r=await fetchWithTimeout(url,15000);
+       if(r&&r.ok){await cache.put(url,r.clone());ok++;}else fail++;
+     }catch(e){fail++;}
+     done++;
+     const pct=Math.round(done/files.length*100);
+     showProgress(progressId,'جاري حفظ '+label,pct);
+     await new Promise(r=>setTimeout(r,0));
+   }
+ }
+ const workers=Array.from({length:Math.min(limit,files.length)},()=>worker());
+ await Promise.all(workers);
+ showProgress(progressId,'اكتمل حفظ '+label,100);
+ showModal(label,fail);
+ return {ok,fail};
+}
+async function downloadAll(){ await storageWarning(); if(!confirm('تحميل الكتاب كاملًا يحتاج مساحة ووقتًا أطول. هل تريد المتابعة؟')) return; try{ const files=await getAssetList(); const result=await cacheFiles(files,'الكتاب كاملًا','progress-all'); if(!result.fail) markSaved(UNITS.flatMap(u=>u.lessons.map(l=>l.path))); } catch(e){showModal('الكتاب كاملًا',true);} }
+async function downloadUnit(unitIndex){ try{ const all=await getAssetList(); const unit=UNITS[unitIndex]; const prefixes=unit.lessons.map(l=>lessonPrefix(l.path)); const files=all.filter(f=>coreFiles().includes(f)||prefixes.some(p=>f.startsWith(p))); const result=await cacheFiles(files,unit.title,'progress-unit-'+unitIndex); if(!result.fail) markSaved(unit.lessons.map(l=>l.path)); }catch(e){showModal('الوحدة',true);} }
+async function downloadLesson(unitIndex,lessonIndex){ try{ const all=await getAssetList(); const lesson=UNITS[unitIndex].lessons[lessonIndex]; const prefix=lessonPrefix(lesson.path); const files=all.filter(f=>coreFiles().includes(f)||f.startsWith(prefix)); const result=await cacheFiles(files,lesson.title,'progress-lesson-'+unitIndex+'-'+lessonIndex); if(!result.fail) markSaved([lesson.path]); }catch(e){showModal('الدرس',true);} }
+document.getElementById('downloadAll').onclick=downloadAll;
+</script>
+</body>
+</html>
