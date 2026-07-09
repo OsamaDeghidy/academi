@@ -1,7 +1,7 @@
-const VERSION='jeza-offline-v5-13-install';
+const VERSION='jeza-offline-v5-14-fix';
 const CORE_CACHE=VERSION+'-core';
 const ASSET_CACHE=VERSION+'-assets';
-const CORE=['./','index.html','manifest.json','asset-manifest.json','service-worker.js','icons/icon-192.png','icons/icon-512.png','assets/images/brand/baba-logo-full.png','shared/browsersupport.js','shared/player.js'];
+const CORE=['./','manifest.json','asset-manifest.json','service-worker.js','icons/icon-192.png','icons/icon-512.png','assets/images/brand/baba-logo-full.png','shared/browsersupport.js','shared/player.js'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
@@ -41,7 +41,7 @@ self.addEventListener('fetch',event=>{
       return res;
     }catch(err){
       if(req.mode==='navigate'){
-        return caches.match('index.html',{ignoreSearch:true});
+        return caches.match('./',{ignoreSearch:true});
       }
       throw err;
     }
